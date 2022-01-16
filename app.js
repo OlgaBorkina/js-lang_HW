@@ -34,4 +34,4 @@ function checkCS (codingString){
 return "ok";
 }
 
-console.log(encode(328, "gonduras"));
+console.log(encode(328, "!@#$%"));
