@@ -1,29 +1,37 @@
-console.log('*****Task # 1*****');
-const a = 'a';
-const s = 'S';
 
-console.log( a + a/s + a + s);
+/********************HW 11 definition */
+function encode(num, codingString) {
+    let r = checkCS(codingString);
+    let res = "";
+    let number = num;
+    if (r == "ok"){
+        let codestr="" + codingString;
+        do {
+                const digit = Math.trunc(num % codestr.length);
+                const symb = getSymbol(digit, codestr);
+                res = symb + res;
+                num = Math.trunc(num / codestr.length);
+        } while(num >= 1);
+    return console.log(`Result of encoding ` + number + ` to "` + codingString + `" notation is - ` + res);
+//    return res;
+    }
+}
 
-console.log('*****Task # 2*****');
-let x = 3;
-let y = 5;
-var oper;
-const fun = function (x,y, oper) {
-       switch (oper){
-           case '+' : return console.log(`${x} + ${y} =`, x+y);
-           case '-' : return console.log(`${x} - ${y} =`, x-y); 
-           case '*' : return console.log(`${x} * ${y} =`, x*y);
-           case "/" : if (y != 0)  return console.log(`${x} / ${y} =`, x/y);
-                      else console.log ('Error, cannot be divided by 0');      
-       }
-};
-let result = fun(x,y,'/');
+function getSymbol(digit, codingString) {
+    const strP = "" + codingString;
+    let symbol= +digit;
+return "" + strP[symbol]; 
+}
 
-
-console.log('*****Task # 3*****');
-const func = function (f){
-            return function (q,w){
-                return q*w;
+function checkCS (codingString){
+    const strP = "" + codingString;
+        if (strP.length < 2) return (console.log('Error - Code String too short'));
+        else {
+            for (let i=0; i<strP.length-1; i++){
+                if (strP.substring(i+1, strP.length).includes (strP[i])) return console.log('Error - repeated symbol - ' + (strP[i]) );
             }
-};
-console.log(func(5)(10,3));
+        }
+return "ok";
+}
+
+console.log(encode(328, "gonduras"));
